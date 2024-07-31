@@ -1,0 +1,13 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "hono-cloudflare"
+main = "src/index.ts"
+compatibility_date = "2024-07-25"
+
+[vars]
+MY_VAR = "my_var"
+
+
+[[d1_databases]]
+binding = "DB" 
+database_name = "hono-cloudflare-worker-d1"
+database_id = "3dba9a06-b7f6-4406-afb9-0b4164cc2627"

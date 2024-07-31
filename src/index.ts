@@ -1,4 +1,6 @@
 import { Hono } from "hono";
+import { drizzle } from "drizzle-orm/d1";
+import { users } from "./db/schema";
 
 type Bindings = {
   MY_VAR: string;
@@ -12,10 +14,11 @@ app.get("/", (c) => {
 });
 
 app.get("/users", async (c) => {
-  const users = await c.env.DB.prepare("SELECT * FROM users").all();
+  const db = drizzle(c.env.DB);
 
-  return c.json({ users: users.results });
+  const results = await db.select().from(users).all();
+
+  return c.json({ users: results });
 });
 
 export default app;
-
